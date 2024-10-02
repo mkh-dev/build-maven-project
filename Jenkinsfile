@@ -4,7 +4,7 @@ pipeline {
         maven 'M2_HOME'
     }
     options {
-        timeout(time: 5, unit: 'MINUTES')  // Timeout de 5 minutes
+        timeout(time: 5, unit: 'MINUTES')  
     }
     environment {
         APP_ENV = "DEV"
@@ -12,14 +12,13 @@ pipeline {
     stages {
         stage('Code Checkout') {
             steps {
-                git branch: 'master',
-                url: 'https://github.com/mkh-dev/build-maven-project.git',
-                credentialsId: 'jenkins-example-github-pat'  // ID des credentials GitHub
+                git branch: 'main',
+                url: 'https://github.com/mkh-dev/build-maven-project.git'
             }
         }
         stage('Code Build') {
             steps {
-                sh 'mvn install'  
+                sh 'mvn install'
             }
         }
     }
